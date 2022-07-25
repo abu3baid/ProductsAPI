@@ -18,14 +18,15 @@ namespace Product.API.Controllers
             return Ok(_productService.GetAll());
         }
 
-        public IActionResult Create()
-        {
+        //public IActionResult Create()
+        //{
 
-        }
-
-        public IActionResult Delete()
+        //}
+        [HttpDelete]
+        public IActionResult Delete(Id)
         {
-            return OK("Ok");
+            _productService.Delete(Id);
+            return Ok("Deleted");
         }
     }
 }
