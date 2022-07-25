@@ -19,5 +19,12 @@ namespace Product.API.Service
             var products = _db.Products.ToList();
             return products;
         }
+
+        public void Delete(int Id)
+        {
+            var product = _db.Products.Find(Id);
+            _db.Products.Remove(product);
+            _db.SaveChanges();
+        }
     }
 }
