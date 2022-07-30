@@ -1,4 +1,5 @@
 ﻿using Product.API.Data;
+using Product.API.Dtos;
 using Product.API.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,35 @@ namespace Product.API.Service
         {
             var products = _db.Products.ToList();
             return products;
+        }
+
+        public ProductEntity Get(int Id)
+        {
+            var product = _db.Products.Find(Id);
+            return product;
+        }
+
+        public int Create(CreateProductDto dto)
+        {
+            var product = new ProductEntity();
+            product.Name = dto.Name;
+            product.Cost = dto.Cost;
+            product.Price = dto.Price;
+
+            _db.Products.Add(product);
+            _db.SaveChanges();
+            return product.Id;
+        }
+
+        public int Update(UpdateProductDto dto)
+        {
+            var product = _db.Products.Find(dto.Id);
+            product.Name = dto.Name;
+            product.Cost = dto.Cost;
+            product.Price = dto.Price;
+            _db.Products.Update(product);
+            _db.SaveChanges();
+            return product.Id;
         }
 
         public void Delete(int Id)

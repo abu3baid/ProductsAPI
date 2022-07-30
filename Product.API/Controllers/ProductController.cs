@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Product.API.Dtos;
 using Product.API.Service;
 
 namespace Product.API.Controllers
@@ -18,12 +19,23 @@ namespace Product.API.Controllers
             return Ok(_productService.GetAll());
         }
 
-        //public IActionResult Create()
-        //{
-
-        //}
+        [HttpPost]
+        public IActionResult Create([FromBody]CreateProductDto dto)
+        {
+            return Ok(_productService.Create(dto));
+        }
+        [HttpPut]
+        public IActionResult Update([FromBody]UpdateProductDto dto)
+        {
+            return Ok(_productService.Update(dto));
+        }
+        [HttpGet]
+        public IActionResult Get(int Id)
+        {
+            return Ok(_productService.Get(Id));
+        }
         [HttpDelete]
-        public IActionResult Delete(Id)
+        public IActionResult Delete(int Id)
         {
             _productService.Delete(Id);
             return Ok("Deleted");
